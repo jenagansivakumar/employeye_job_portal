@@ -1,7 +1,10 @@
-import { Request, Response } from "express";
+import { Request, Response } from "express"
 
 
 
-export const getHome = (req: Request, res: Response) :void =>{
-    res.send("Hello home")
+const sayHello = ( req: Request , res : Response) :void => {
+    res.send("Hello")
 }
+
+
+export default sayHello
