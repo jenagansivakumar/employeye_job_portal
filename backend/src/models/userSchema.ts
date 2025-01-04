@@ -2,9 +2,14 @@ import {z} from "zod"
 
 
 const userSchema = z.object({
-    name: z.string()
+    name: z.string(),
+    username: z.string(),
 })
+
 
 const userListSchema = z.array(userSchema)
 
-export {userListSchema, userSchema}
+
+
+
+export  {userListSchema, userSchema}
