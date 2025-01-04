@@ -1,14 +1,14 @@
 import { Router } from "express";
-import sayHello from "../controllers/homeController.js";
-import getUsers from "../controllers/usersController.js";
+import fetchUser from "../controllers/apiController.js";
+
+
 
 
 const router = Router()
 
 
 
-router.get("/", sayHello)
-router.get("/users", getUsers )
+router.get("/api", fetchUser )
 
 
 export default router
