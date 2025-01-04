@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "node --loader ts-node/esm src/app.ts"
+    "start": "nodemon --loader ts-node/esm src/app.ts"
   },
   "devDependencies": {
     "@types/express": "^4.17.1",
