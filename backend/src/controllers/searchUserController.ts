@@ -13,8 +13,8 @@ const searchUsers = async(req: Request, res: Response) => {
         const filteredResults = await prisma.user.findMany({
             where: {
                 OR: [
-                    {name: String(name)},
-                    {email: String(email)}
+                    {name: {contains: String(name), mode: "insensitive"}},
+                    {email: {contains: String(email), mode: "insensitive"}},
                 ]
             }
         })

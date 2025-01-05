@@ -91,3 +91,6 @@
 2025-01-05 18:00:48.860 CET [29039] ERROR:  duplicate key value violates unique constraint "User_email_key"
 2025-01-05 18:00:48.860 CET [29039] DETAIL:  Key (email)=(.cdfadfafkjjodm) already exists.
 2025-01-05 18:00:48.860 CET [29039] STATEMENT:  INSERT INTO "public"."User" ("name","email") VALUES ($1,$2) RETURNING "public"."User"."id", "public"."User"."name", "public"."User"."email"
+2025-01-05 18:18:21.418 CET [29993] ERROR:  duplicate key value violates unique constraint "User_email_key"
+2025-01-05 18:18:21.418 CET [29993] DETAIL:  Key (email)=(.cdfadfafkjjodm) already exists.
+2025-01-05 18:18:21.418 CET [29993] STATEMENT:  INSERT INTO "public"."User" ("name","email") VALUES ($1,$2) RETURNING "public"."User"."id", "public"."User"."name", "public"."User"."email"
