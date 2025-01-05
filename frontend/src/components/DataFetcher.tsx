@@ -1,49 +1,46 @@
-import React, { use, useEffect, useState } from 'react'
+import User from 'models/User'
+import React, { useEffect, useState, useTransition } from 'react'
 
-export const DataFetcher = () => {
-
-    const [data, setData] = useState<Data[]>([])
+export default function DataFetcher() {
+    const [users, setUsers] = useState<User[]>([])
     const [error, setError] = useState<string>("")
     const [loading, setLoading] = useState<boolean>(false)
 
 
-    const fetchData = async() => {
-        setLoading(true)
-        setError("")
-        try {
-            const response = await fetch("http://localhost:4000/data")
-            const data = await response.json()
-            setData(data)
-        } catch (error) {
-            setError(error.message || "An Error Has Occurred")
-        } finally {
-            setLoading(false)
-        }
-    } 
 
+    const fetchUsers = async() => {
+        setError("")
+        setLoading(true)
+
+        const response = await fetch("http://localhost:4000/users")
+        const data = await response.json()
+        console.log(data)
+        setUsers(data)
+        setError(error)
+        setLoading(false)
+    }
 
     useEffect(()=> {
-        fetchData()
+        fetchUsers()
     }, [])
 
-    if (loading) {
-        <div> Loading...</div>
+    if (loading){
+        return <div> Loading...</div>
     }
-
     if (error) {
-        <div> {error}</div>
+       return  <div> {error} </div>
     }
 
-    return (
-        <>
-        <h2> User Data</h2>
-            <ul>
-                {data.map(user => (
-                    <li key={user.id}> Message: {user.message} Time {new Date(user.timestamp).toISOString()}</li>
-                ))}
-            </ul>
-        </>
-    )
-
- 
+  return (
+    <div>
+        <h2> Users</h2>
+        <ul>
+            {users.map(user => (
+                <li key={user.id}>
+                    {user.name} - {user.email}
+                </li>
+            ))}
+        </ul>
+    </div>
+  )
 }
