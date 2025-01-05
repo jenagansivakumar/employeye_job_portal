@@ -4,10 +4,11 @@ import { prisma } from "../app.js";
 
 
 const searchUsers = async(req: Request, res: Response) => {
+    console.log("search hit")
     try {
         const {name, email} = req.query
         if (!name || !email){
-            res.status(400).json({error: "Invalid search parameters"})
+            return res.status(400).json({error: "Invalid search parameters"})
         }
         const filteredResults = await prisma.user.findMany({
             where: {
@@ -19,6 +20,7 @@ const searchUsers = async(req: Request, res: Response) => {
         })
         res.status(200).json(filteredResults)
     } catch (error){
+        console.error(error)
         res.status(500).json({error: "Cannot filter results"})
     }
 }
