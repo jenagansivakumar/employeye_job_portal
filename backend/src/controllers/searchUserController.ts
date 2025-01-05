@@ -7,7 +7,7 @@ const searchUsers = async(req: Request, res: Response) => {
     console.log("search hit")
     try {
         const {name, email} = req.query
-        if (!name || !email){
+        if (!name && !email){
             return res.status(400).json({error: "Invalid search parameters"})
         }
         const filteredResults = await prisma.user.findMany({

@@ -17,7 +17,7 @@ const updateUser = async(req: Request, res: Response) => {
             data: {
                 name: name,
                 email: email
-            }
+            }   
         })
         res.status(201).json(updatedUser)
     } catch (error) {
