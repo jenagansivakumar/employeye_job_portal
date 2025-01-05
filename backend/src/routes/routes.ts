@@ -1,5 +1,5 @@
 import { Router } from "express";
-import fetchUser from "../controllers/fetchUserController";
+import fetchUser from "../controllers/fetchUserController.js";
 
 
 
