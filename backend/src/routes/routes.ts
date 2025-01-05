@@ -1,18 +1,16 @@
 import { Router } from "express";
-import fetchUser from "../controllers/fetchUserController.js";
-import serveData from "../controllers/serveDataController.js";
 
-
-
-
+import healthCheck from "../controllers/healthController.js";
+import fetchUsers from "../controllers/fetchUserController.js";
+import createUser from "../controllers/createUserController.js";
+import deleteUser from "../controllers/deleteUserController.js";
 
 
 const router = Router()
 
-
-
-router.get("/fetch", fetchUser )
-router.get("/data", serveData)
-
+router.get("/health", healthCheck)
+router.get("/users", fetchUsers)
+router.post("/users", createUser)
+router.delete("/users/:id", deleteUser)
 
 export default router

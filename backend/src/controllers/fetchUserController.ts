@@ -1,22 +1,22 @@
 import { Request, Response } from "express";
-import http from "../utils/axios.js";
-import { usersSchema } from "../models/Users.js";
+import { prisma } from "../app.js";
 
 
 
 
 
 
-
-const fetchUser = async(req: Request, res: Response) =>{
+const fetchUsers = async(req: Request, res: Response) => {
     try {
-        const response = await http.get("/users")
-        const data = usersSchema.parse(response.data)
-        res.status(200).json(data)
+        const users = await prisma.user.findMany()
+        if (!users){
+            res.status(400).json({erorr: "No users!"})
+        }
+        res.status(200).json(users)
     } catch (error) {
-        res.status(500).json({error: "Cannot fetch/parse data from URL"})
-    } 
+        res.status(500).json({error: "Cannot fetch users from database"})
+    }
 }
 
 
-export default fetchUser
+export default fetchUsers
