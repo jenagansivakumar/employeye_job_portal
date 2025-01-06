@@ -94,3 +94,10 @@
 2025-01-05 18:18:21.418 CET [29993] ERROR:  duplicate key value violates unique constraint "User_email_key"
 2025-01-05 18:18:21.418 CET [29993] DETAIL:  Key (email)=(.cdfadfafkjjodm) already exists.
 2025-01-05 18:18:21.418 CET [29993] STATEMENT:  INSERT INTO "public"."User" ("name","email") VALUES ($1,$2) RETURNING "public"."User"."id", "public"."User"."name", "public"."User"."email"
+2025-01-06 08:32:52.773 CET [40464] ERROR:  duplicate key value violates unique constraint "User_email_key"
+2025-01-06 08:32:52.773 CET [40464] DETAIL:  Key (email)=(email.com) already exists.
+2025-01-06 08:32:52.773 CET [40464] STATEMENT:  INSERT INTO "public"."User" ("name","email") VALUES ($1,$2) RETURNING "public"."User"."id", "public"."User"."name", "public"."User"."email"
+2025-01-06 19:47:45.124 CET [15968] LOG:  received smart shutdown request
+2025-01-06 19:47:45.130 CET [15968] LOG:  background worker "logical replication launcher" (PID 15975) exited with exit code 1
+2025-01-06 19:47:45.134 CET [15970] LOG:  shutting down
+2025-01-06 19:47:45.230 CET [15968] LOG:  database system is shut down
