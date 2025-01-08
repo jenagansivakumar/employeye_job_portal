@@ -2,52 +2,46 @@ import User from 'models/User'
 import React, { useEffect, useState } from 'react'
 
 export default function DataFetcher() {
-
-    const [users, setUser] = useState<User[]>([])
+    const [users, setUsers] = useState<User[]>([])
     const [error, setError] = useState<string>("")
     const [loading, setLoading] = useState<boolean>(false)
 
 
-    const fetchData = async()=>{
-        setLoading(true)
+    const fetchUsers = async ()=>{
         setError("")
-        try {
-            const response = await fetch("http://localhost:4000/users")
-            const data = await response.json()
-            console.log(Array.isArray(data.users))
-            console.log(data)
-            setUser(data)
-        } catch (err: any){
-            setError("Unexpected error")
-        } finally {
-            setLoading(false)
-        }
+        setLoading(true)
+        const response = await fetch("http://localhost:4001/users")
+        const data = await response.json()
+        setUsers(data)
+        setLoading(false)
     }
+    console.log(users)
 
     useEffect(()=>{
-        fetchData()
-    }, [])
-
+        fetchUsers()
+    },[])
 
     if (loading){
-        return <div>LOADING....</div>
+       return <div> Loading...</div>
     }
-
     if (error){
-        return <div> {error}</div>
+       return  <div>{error}</div>
     }
 
+    if (users.length === 0){
+       return  <div> Empty Users </div>
+    }
 
   return (
-   <div>
+    <div>
         <ul>
-            {users.map((user)=> (
-                <li key={user.id}>
-                    {user.name} - {user.email}
-                </li>
+        {users.map(user=>(
+            <li key={user.id}>
+                {user.name} - {user.email}
+            </li>
+        ))}
 
-            ))}
         </ul>
-   </div>
+    </div>
   )
 }
