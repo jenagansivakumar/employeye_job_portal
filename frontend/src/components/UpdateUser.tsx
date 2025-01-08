@@ -1,6 +1,5 @@
 import axios from 'axios'
-import React, { ChangeEvent, useState, useTransition } from 'react'
-import { Prisma } from "@prisma/client"; 
+import React, { ChangeEvent, useEffect, useState, useTransition } from 'react'
 
 export default function UpdateUser() {
     const [id, setId] = useState<number>(0)
@@ -26,15 +25,30 @@ export default function UpdateUser() {
         e.preventDefault()
         
         try {
+            setError("")
             const response = await axios.put("http://localhost:4001/users", { email, id})
             console.log(`Update user ${id}'s email with ${email}`)
             if (response.status != 200){
                 throw new Error("Error")
             }
-        } catch (error){
-            if (error instanceof Prisma)
-            console.error("error", error)
+        } catch (err){
+            const errMessage = (err.response?.data?.message || err.message || "Error fetching")
+            setError(errMessage)
         }
+    }
+
+    useEffect(() => {
+        if (error) {
+          const timer = setTimeout(() => {
+            setError(""); 
+          }, 5000);
+      
+          return () => clearTimeout(timer); 
+        }
+      }, [error]);
+
+    if (error){
+        return <div> {error}</div>
     }
 
 
