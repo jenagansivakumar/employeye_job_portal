@@ -4,8 +4,9 @@ import { prisma } from "../app.js";
 
 
 export const  fetchUsers = async(req: Request, res: Response) => {
+    console.log("Hit fetch users")
     try {
-        const users = await prisma.user.findMany({})
+        const users = await prisma.users.findMany({})
         if (!users){
             res.status(400).json({error: "Users are empty"})
         }
