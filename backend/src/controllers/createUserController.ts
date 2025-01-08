@@ -10,7 +10,7 @@ export const createUser = async(req: Request, res: Response) => {
         return res.status(400).json({error: "Name and email are required"})
     }
     try {
-        const createdUser = await prisma.users.create({
+        const createdUser = await prisma.app_user.create({
             data: {
                 name,
                 email
