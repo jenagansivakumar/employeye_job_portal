@@ -3,7 +3,7 @@ import { prisma } from "../app.js";
 
 
 
-export onst deleteUser = (req: Request, res: Response) => {
+export const deleteUser = (req: Request, res: Response) => {
     const {id} = req.body
     if (!id){
         return res.status(400).json({error: "ID is necessary"})
