@@ -8,7 +8,7 @@ export const  fetchUsers = async(req: Request, res: Response) => {
     try {
         const users = await prisma.users.findMany({})
         if (!users){
-            res.status(400).json({error: "Users are empty"})
+            return res.status(400).json({error: "Users are empty"})
         }
         res.status(200).json(users)
     } catch (error){
