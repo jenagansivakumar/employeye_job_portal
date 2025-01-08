@@ -5,8 +5,8 @@ import { prisma } from "../app.js";
 
 
 export const updateUser = async(req: Request, res: Response) => {
-    const {id} = req.params
-    const { email} = req.body
+    
+    const { email, id} = req.body
     if (!id || !email){
         return res.status(400).json({message: "Requires ID and Email"})
     }
