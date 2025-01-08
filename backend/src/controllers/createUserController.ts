@@ -4,7 +4,7 @@ import { prisma } from "../app.js";
 
 
 
-const createUser = async(req: Request, res: Response) => {
+export const createUser = async(req: Request, res: Response) => {
     const {name, email} = req.body
     if (!name || !email){
         return res.status(400).json({error: "Name and email are required"})
