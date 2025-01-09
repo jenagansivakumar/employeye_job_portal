@@ -7,7 +7,7 @@ export const getUsers = async(req: Request, res: Response) => {
     console.log("Hit get endpoint")
     try {
         const userData = await prisma.app_user.findMany({})
-        if (!userData){
+        if (userData.length === 0){
              return res.status(400).json({error: "User Data empty"})
         }
         res.status(200).json(userData)
