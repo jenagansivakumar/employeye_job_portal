@@ -1,6 +1,6 @@
 import express from "express"
 import { PrismaClient } from "@prisma/client"
-import router from "./controllers.ts/routes/routes.js"
+import router from "./routes/routes.js"
 import cors from "cors"
 
 
