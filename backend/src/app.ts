@@ -1,23 +1,24 @@
 import express from "express"
-import cors from "cors"
-import { Prisma } from "@prisma/client"
 import { PrismaClient } from "@prisma/client"
-import { router } from "./routes/routes.js"
+import router from "./controllers.ts/routes/routes.js"
+import cors from "cors"
 
 
 
 
 const app = express()
+const port = 4000
 app.use(express.json())
 app.use(cors())
-app.use("/", router)
-const port = 4000
+app.use("/",router)
+
 
 export const prisma = new PrismaClient()
 
 
 
 
-app.listen(port, ()=> {
+
+app.listen(port, ()=>{
     return console.log(`Server is running on port ${port}`)
 })
