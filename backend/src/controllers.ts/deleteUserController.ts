@@ -4,7 +4,7 @@ import { prisma } from "../app.js";
 
 
 
-const deleteUser = async (req: Request, res: Response) => {
+export const deleteUser = async (req: Request, res: Response) => {
     const {id} = req.body
     if (!id){
         return res.status(400).json({message: "ID is required"})
@@ -22,7 +22,7 @@ const deleteUser = async (req: Request, res: Response) => {
         const deletedUser = prisma.app_user.delete({
             where: {id: Number(id)}
         })
-        res.status(200).json(`${deletedUser} has been deleted!`)
+        res.status(200).json(`${(await deletedUser).name} has been deleted!`)
     } catch (error){
         console.error(error.message)
         res.status(500).json({error: "Cannot delete user!"})
