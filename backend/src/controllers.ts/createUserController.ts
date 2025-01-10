@@ -4,29 +4,31 @@ import { prisma } from "../app.js";
 
 
 
-export const createUser = async (req: Request, res: Response) => {
+export const createUser =async (req: Request, res: Response)=>{
     const {name, email} = req.body
+
     if (!name || !email){
-        return res.status(400).json({message: "Invalid data provided to create user"})
+        return res.status(400).json({message: "Name and email are required"})
     }
+
     const userExists = await prisma.app_user.findUnique({
-        where: {email: email}
+        where: {email}
     })
 
     if (userExists){
-        return res.status(400).json({message: "User exists already"})
+        return res.status(400).json({message: "User already exists"})
     }
-
-    try {
-        const createdUser = await prisma.app_user.create({
-            data: {
-                name,
-                email
-            }
-        })
-        res.status(201).json(`${createdUser.name} has been added to the database`)
-    } catch (error){
-        console.error(error.message)
-        res.status(500).json({error: "Cannot create user"})
-    }
+        try {
+            const createdUser = await prisma.app_user.create({
+                data: {
+                    name,
+                    email
+                }
+            })
+            res.status(201).json(createdUser)
+        } catch (error){
+            console.error(error.message)
+            res.status(500).json({error: "Cannot create user"})
+        }
+    
 }
