@@ -11,7 +11,7 @@ import (
 
 func handleApiFetch(errorChan chan<- error, userDetailChan chan<- models.User, userId int, client *http.Client, wg *sync.WaitGroup) {
 	defer wg.Done()
-	url := fmt.Sprintf("https://jsonplaceholder.typicode.com/user/%d", userId)
+	url := fmt.Sprintf("https://jsonplaceholder.typicode.com/users/%d", userId)
 	if url == "" {
 		errorChan <- fmt.Errorf("url is empty")
 		return
@@ -61,6 +61,7 @@ func FetchUser(w http.ResponseWriter, r *http.Request, client *http.Client) {
 		close(userDetailChan)
 	}()
 
+	results := make(map[string]interface{})
 	var errorList []error
 	var userList []models.User
 	for {
@@ -75,9 +76,23 @@ func FetchUser(w http.ResponseWriter, r *http.Request, client *http.Client) {
 			if ok {
 				userList = append(userList, userDetail)
 			} else {
-
+				userDetailChan = nil
 			}
 		}
+		if errorChan == nil && userDetailChan == nil {
+			break
+		}
 	}
+
+	results["errors"] = errorList
+	results["userDetails"] = userList
+
+	jsonData, err := json.Marshal(results)
+	if err != nil {
+		http.Error(w, "Cannot marshal results", http.StatusInternalServerError)
+		return
+	}
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(jsonData)
 
 }
