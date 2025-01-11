@@ -11,7 +11,7 @@ model userDetails {
   id Int @id @default(autoincrement())
   email String @unique
   name String?
-  username String
+  username String @unique
   password String 
 }
 
