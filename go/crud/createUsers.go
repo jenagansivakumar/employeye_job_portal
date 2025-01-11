@@ -7,7 +7,7 @@ import (
 	"github.com/jenagansivakumar/api/models"
 )
 
-func createUser(w http.ResponseWriter, r *http.Request) {
+func CreateUser(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		http.Error(w, "Method has to be POST", http.StatusInternalServerError)
 		return
@@ -23,5 +23,15 @@ func createUser(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Name and email are required", http.StatusInternalServerError)
 		return
 	}
+
+	models.Users = append(models.Users, user)
+
+	jsonData, err := json.Marshal(user)
+	if err != nil {
+		http.Error(w, "Cannot marshal user", http.StatusInternalServerError)
+		return
+	}
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(jsonData)
 
 }

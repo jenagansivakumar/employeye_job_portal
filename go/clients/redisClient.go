@@ -1,7 +1,8 @@
-package redis
+package clients
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"time"
 
@@ -20,6 +21,6 @@ func RedisClient() *redis.Client {
 	if _, err := client.Ping(ctx).Result(); err != nil {
 		log.Fatal("Cannot connect to Redis!")
 	}
-
+	fmt.Println("Connected to Redis!")
 	return client
 }

@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
+	"github.com/jenagansivakumar/api/clients"
 	"github.com/jenagansivakumar/api/crud"
 )
 
@@ -26,8 +27,14 @@ func main() {
 }
 
 func muxRouter() *mux.Router {
+	redisClient := clients.RedisClient()
+	client := http.Client{
+		Timeout: 10 * time.Second,
+	}
 	r := mux.NewRouter()
-	r.HandleFunc("/", crud.FetchUsers).Methods(http.MethodGet)
+	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		crud.FetchUser(w, r, redisClient, &client)
+	}).Methods(http.MethodGet)
 
 	return r
 }

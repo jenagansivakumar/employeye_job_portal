@@ -1,12 +1,13 @@
-import React from 'react'
 import CreateUser from 'components/CreateUser'
-import FetchUser from 'components/FetchUser'
+import DeleteUser from 'components/DeleteUser'
+import React from 'react'
+
 
 export default function App() {
   return (
     <>
-   <CreateUser />
-   <FetchUser />
+      <CreateUser />
+      <DeleteUser/>
     </>
   )
 }
