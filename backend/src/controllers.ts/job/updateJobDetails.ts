@@ -4,7 +4,7 @@ import { prisma } from "../../utils/init.js"
 
 
 
-const updateJobDetail = async(req: Request, res: Response) => {
+export const updateJobDetail = async(req: Request, res: Response) => {
     const {id, jobTitle, jobDescription} = req.body
     if (!id || !jobTitle || !jobDescription){
         return res.status(400).json({message: "Invalid details"})
