@@ -5,9 +5,9 @@ import { prisma } from "../../utils/init.js";
 
 
 
-const createJob = async(req: Request, res: Response) => {
-    const {jobTitle, jobDecription} = req.body
-    if (!jobTitle || !jobDecription){
+export const createJob = async(req: Request, res: Response) => {
+    const {jobTitle, jobDescription} = req.body
+    if (!jobTitle || !jobDescription){
         return res.status(400).json({message: "Title and description are required"})
     }
 
@@ -15,7 +15,7 @@ const createJob = async(req: Request, res: Response) => {
         const createdJob = await prisma.jobDetail.create({
             data: {
                jobTitle: jobTitle,
-               jobDescription: jobDecription
+               jobDescription: jobDescription
             }
         })
     res.status(201).json(`${jobTitle} has been created!`)

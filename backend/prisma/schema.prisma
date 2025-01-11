@@ -12,7 +12,7 @@ model userDetails {
   email String @unique
   name String?
   username String
-  password String @unique
+  password String 
 }
 
 model jobDetail {

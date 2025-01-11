@@ -7,9 +7,9 @@ import { updateUser } from "../controllers.ts/user/updateUserDetails.js";
 
 
 
-export const router = Router()
+export const userRouter = Router()
 
-router.get("/users", fetchAllUsers)
-router.post("/users", createUser)
-router.delete("/users", deleteUser)
-router.put("/users", updateUser )
+userRouter.get("/users", fetchAllUsers)
+userRouter.post("/users", createUser)
+userRouter.delete("/users", deleteUser)
+userRouter.put("/users", updateUser )
