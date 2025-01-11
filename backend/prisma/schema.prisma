@@ -7,10 +7,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model app_user {
-  id    Int     @id @default(autoincrement())
-  name  String? @db.VarChar(100)
-  email String? @unique @db.VarChar(100)
-  username String? @unique @db.VarChar(100)
-  password String? @unique @db.VarChar(100)
+model userDetails {
+  id Int @default(autoincrement())
+  email String @unique
+  username String
+  password String
 }
