@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
+	"github.com/jenagansivakumar/api/crud"
 )
 
 func main() {
@@ -26,6 +27,7 @@ func main() {
 
 func muxRouter() *mux.Router {
 	r := mux.NewRouter()
+	r.HandleFunc("/", crud.FetchUsers).Methods(http.MethodGet)
 
 	return r
 }
