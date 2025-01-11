@@ -24,16 +24,14 @@ func handleApiFetch(errorChan chan<- error, userDetailChan chan<- models.User, u
 	}
 	defer resp.Body.Close()
 
-	var users []models.User
+	var user models.User
 
-	if err := json.NewDecoder(resp.Body).Decode(&users); err != nil {
+	if err := json.NewDecoder(resp.Body).Decode(&user); err != nil {
 		errorChan <- fmt.Errorf("cannot decode response body")
 		return
 	}
 
-	for _, user := range users {
-		userDetailChan <- user
-	}
+	userDetailChan <- user
 
 }
 

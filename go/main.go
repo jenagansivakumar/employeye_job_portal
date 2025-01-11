@@ -33,7 +33,8 @@ func muxRouter() *mux.Router {
 	r := mux.NewRouter()
 	r.HandleFunc("/users", func(w http.ResponseWriter, r *http.Request) {
 		crud.FetchUser(w, r, &client)
-	})
+	}).Methods(http.MethodGet)
+	r.HandleFunc("/users", crud.CreateUser).Methods(http.MethodPost)
 
 	return r
 }
