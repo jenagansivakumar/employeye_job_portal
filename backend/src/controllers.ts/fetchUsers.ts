@@ -4,7 +4,7 @@ import { prisma } from "../utils/init.js";
 
 
 
-const fetchAllUsers = (req: Request, res: Response)=> {
+export const fetchAllUsers = (req: Request, res: Response)=> {
     try{
         const fetchedUsers = prisma.userDetails.findMany()
         if (!fetchedUsers){
