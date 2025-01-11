@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { prisma } from "../utils/init.js";
+import {prisma} from "../../utils/init.js"
 import bcrypt from "bcrypt"
-import { findUserById } from "../userServices.ts/findUserById.js";
-import { findUserByEmail } from "../userServices.ts/findUserByEmail.js";
+import { findUserById } from "../../userServices.ts/findUserById.js";
+import { findUserByEmail } from "../../userServices.ts/findUserByEmail.js";
 
 
 
