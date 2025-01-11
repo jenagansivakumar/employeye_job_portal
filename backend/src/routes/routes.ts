@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { fetchAllUsers } from "../controllers.ts/fetchUsers.js";
+import { fetchAllUsers } from "../controllers.ts/fetchAllUsers.js";
 
 
 
