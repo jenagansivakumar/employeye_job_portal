@@ -14,3 +14,9 @@ model userDetails {
   username String
   password String @unique
 }
+
+model jobDetail {
+  id Int @id @default(autoincrement())
+  jobTitle String
+  jobDescription String
+}

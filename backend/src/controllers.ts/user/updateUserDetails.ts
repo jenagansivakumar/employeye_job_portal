@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import {prisma} from "../..//utils/init.js"
-import { findUserById } from "../../userServices.ts/findUserById.js";
+import { findUserById } from "./userServices/findUserById.js";
 
 
 
