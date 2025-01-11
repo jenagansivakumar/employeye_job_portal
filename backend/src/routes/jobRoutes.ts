@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { createJob } from "../controllers.ts/job/createJob.js";
-import { fetchAllJobs } from "../controllers.ts/job/getAllJobs.js";
-import { updateJobDetail } from "../controllers.ts/job/updateJobDetails.js";
-import { deleteJob } from "../controllers.ts/job/deleteJob.js";
+import { createJob } from "../controllers/job/createJob.js";
+import { fetchAllJobs } from "../controllers/job/getAllJobs.js";
+import { updateJobDetail } from "../controllers/job/updateJobDetails.js";
+import { deleteJob } from "../controllers/job/deleteJob.js";
 
 
 

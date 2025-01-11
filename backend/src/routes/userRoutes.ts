@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { fetchAllUsers } from "../controllers.ts/user/fetchAllUsers.js";
-import { createUser } from "../controllers.ts/user/createUser.js";
-import { deleteUser } from "../controllers.ts/user/deleteUser.js";
-import { updateUser } from "../controllers.ts/user/updateUserDetails.js";
+import { fetchAllUsers } from "../controllers/user/fetchAllUsers.js";
+import { createUser } from "../controllers/user/createUser.js";
+import { deleteUser } from "../controllers/user/deleteUser.js";
+import { updateUser } from "../controllers/user/updateUserDetails.js";
 
 
 
