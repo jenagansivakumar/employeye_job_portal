@@ -1,0 +1,19 @@
+name: Backend CI pipeline
+
+on:
+    push:
+        paths:
+           - "backend/**" 
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            - name: Setup Node
+              uses: actions/setup-node@v3
+
+            - name: Install dependencies
+              run: npm install
