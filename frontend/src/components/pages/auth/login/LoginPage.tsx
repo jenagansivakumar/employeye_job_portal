@@ -1,7 +1,7 @@
 import  { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FormSchema } from "../../../../models/FormSchema";
+import { FormSchema, LoginSchema } from "../../../../models/FormSchema";
 import axios from "axios";
 import { z } from "zod";
 import { Button } from "../../../ui/button";
@@ -9,24 +9,25 @@ import { Input } from "../../../ui/input";
 import { Label } from "../../../ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "../../../ui/card";
 
-type FormData = z.infer<typeof FormSchema>;
+type LoginData = z.infer<typeof LoginSchema>;
 
 export const LoginPage = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
-    resolver: zodResolver(FormSchema),
+  } = useForm<LoginData>({
+    resolver: zodResolver(LoginSchema),
   });
 
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<string>("");
 
-  const userLogin = async (data: FormData) => {
+  const userLogin = async (data: LoginData) => {
     setError("");
     setLoading(true);
+  
 
     try {
       const response = await axios.post(
@@ -47,7 +48,7 @@ export const LoginPage = () => {
     }
   };
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (data: LoginData) => {
     await userLogin(data);
   };
 
