@@ -1,9 +1,9 @@
-name: CI/CD Pipeline
+name: Frontend CI Pipeline
 
 on:
   push:
     paths:
-      - "frontend/**"
+      - "backend/**"
 
 jobs:
   build:
@@ -12,15 +12,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      - name: setup node
         uses: actions/setup-node@v3
         with:
           node-version: "20"
 
-      - name: Install dependencies
-        working-directory: frontend 
+      - name: install dependencies
+        working-directory: frontend
         run: npm ci
 
       - name: Build app
-        working-directory: frontend 
+        working-directory: frontend
         run: npm run build
+
+      
