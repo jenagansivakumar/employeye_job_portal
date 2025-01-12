@@ -1,11 +1,12 @@
 import { Request, Response } from "express";
 import { findJobById } from "./findJobById.js";
 import { prisma } from "../../utils/init.js";
-
+import { endpointHit } from "../../utils/endpointHit.js"
 
 
 
 export const createJob = async(req: Request, res: Response) => {
+    endpointHit()
     const {jobTitle, jobDescription} = req.body
     if (!jobTitle || !jobDescription){
         return res.status(400).json({message: "Title and description are required"})
