@@ -1,15 +1,15 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import {useForm} from "react-hook-form"
-import { formSchema } from '../../../models/FormSchema'
+import { FormSchema } from '../../../models/FormSchema'
 import { zodResolver } from "@hookform/resolvers/zod";
 import {z} from "zod"
 import { Button } from '../../ui/button';
 
-type FormData = z.infer<typeof formSchema>
+type FormData = z.infer<typeof FormSchema>
 export const LoginPage = () => {
     const {register, handleSubmit, formState: {errors}} = useForm<FormData>({
-        resolver: zodResolver(formSchema)
+        resolver: zodResolver(FormSchema)
     })
     const [username, setUsername] = useState<string>("")
     const [password, setPassword] = useState<string>("")

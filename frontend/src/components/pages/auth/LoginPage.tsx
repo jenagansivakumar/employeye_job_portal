@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { formSchema } from '../../../models/FormSchema';
+import { FormSchema } from '../../../models/FormSchema';
 import axios from 'axios';
 import { z } from 'zod';
 import { Button } from '../../ui/button';
 
-type FormData = z.infer<typeof formSchema>;
+type FormData = z.infer<typeof FormSchema>;
 
 export const LoginPage = () => {
   const {
@@ -14,7 +14,7 @@ export const LoginPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(FormSchema),
   });
 
   const [username, setUsername] = useState<string>('');
