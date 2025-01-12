@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { findUserByUsername } from "./authService/findUserByUsername.js";
 import bcrypt from "bcrypt"
+import jwt from "jsonwebtoken"
 
 
 
@@ -8,6 +9,8 @@ import bcrypt from "bcrypt"
 
 export const userLogin = async (req: Request, res: Response) => {
     const {username, password} = req.body
+    const SECRET_KEY = process.env.JWT_SECRET
+
     if (!username || !password){
         return res.status(400).json({message: "Username and password required"})
     }
@@ -23,7 +26,11 @@ export const userLogin = async (req: Request, res: Response) => {
             return res.status(401).json({error: "Cannot login"})
         }
 
-        res.status(200).json({message: "Login successful!"})
+        const payload = {id: userExists.id, username: userExists.username}
+
+        const token = jwt.sign(payload, SECRET_KEY,{expiresIn:"1h"})
+
+        res.send({token})
 
     } catch (error){
         console.error(error.message)
