@@ -1,19 +1,21 @@
 import { useState } from 'react'
 import './App.css'
-import { Button } from './components/ui/button'
-import React from 'react'
 import { JobsPage } from './components/pages/jobs/JobsPage'
-import { LoginPage } from './components/pages/auth/LoginPage'
+import { LoginPage } from './components/pages/auth/login/LoginPage'
+import { SignUpPage } from './components/pages/auth/signup/SignUpPage'
 import { CreateJob } from './components/pages/jobs/CreateJob'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-    <LoginPage/>
-    <JobsPage/>
-    <CreateJob/>
-    </>
+      <Routes>
+        <Route path='/auth/login' element={<LoginPage/>} />
+        <Route path='/auth/signup' element={<SignUpPage/>} />
+        <Route path='/' element={<LoginPage />} />
+        <Route path='/jobs/create' element={<CreateJob/>} />
+        <Route path='/jobs/display' element={<JobsPage/>} />
+
+      </Routes>
     
   )
 }
