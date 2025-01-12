@@ -8,10 +8,13 @@ import { Button } from "../../../ui/button";
 import { Input } from "../../../ui/input";
 import { Label } from "../../../ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "../../../ui/card";
+import { useNavigate } from "react-router-dom";
+
 
 type LoginData = z.infer<typeof LoginSchema>;
 
 export const LoginPage = () => {
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -27,6 +30,7 @@ export const LoginPage = () => {
   const userLogin = async (data: LoginData) => {
     setError("");
     setLoading(true);
+    console.log(data)
   
 
     try {
@@ -35,6 +39,8 @@ export const LoginPage = () => {
         data,
         { headers: { "Content-Type": "application/json" } }
       );
+      localStorage.setItem("authToken", response.data.authToken)
+      navigate("/jobs/display")
       console.log(response)
       setSuccess("Successfully logged in!");
     } catch (error: any) {
