@@ -1,7 +1,16 @@
 import axios from 'axios'
 import React, { useState } from 'react'
+import {useForm} from "react-hook-form"
+import { formSchema } from '../../models/FormSchema'
+import { zodResolver } from "@hookform/resolvers/zod";
+import {z} from "zod"
+import { Button } from '../ui/button';
 
+type FormData = z.infer<typeof formSchema>
 export const LoginPage = () => {
+    const {register, handleSubmit, formState: {errors}} = useForm<FormData>({
+        resolver: zodResolver(formSchema)
+    })
     const [username, setUsername] = useState<string>("")
     const [password, setPassword] = useState<string>("")
     const [email, setEmail] = useState<string>("")
@@ -25,12 +34,26 @@ export const LoginPage = () => {
         }
     }
 
+    const onSubmit = async(data) => {
+        console.log(data)
+        await authUser()
+    }
+
 
 
 
   return (
-    <Form>
-        
-    </Form>
+    <form onSubmit={onSubmit}>
+        <label> Name </label>
+            <input {...register('name')} type='text' />
+            <p>{errors.name?.message}</p>
+        <label> Email </label>
+            <input {...register("email")} type='email'/>
+        <label>Username</label>
+            <input {...register("username")} type='text'/>
+        <label> Password </label>
+            <input {...register("password")} type='password' />
+        <Button>Submit</Button>
+    </form>
   )
 }
