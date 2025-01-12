@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useTransition } from 'react'
 
 export const LoginPage = () => {
 
     const [username, setUsername] = useState<string>("")
-    const [password, setPassword] = 
-  return (
-    <div>LoginPage</div>
-  )
+    const [password, setPassword] = useState<string>("")
+    return (
+        <div>LoginPage</div>
+
+    )
+  
 }
