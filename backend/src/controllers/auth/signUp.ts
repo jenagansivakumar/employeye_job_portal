@@ -1,13 +1,15 @@
 import { Request, Response } from "express";
 import {prisma} from "../../utils/init.js"
 import bcrypt from "bcrypt"
-import { findUserById } from "./userServices/findUserById.js";
-import { findUserByEmail } from "./userServices/findUserByEmail.js";
+import { findUserById } from "../user/userServices/findUserById.js";
+import { findUserByEmail } from "../user/userServices/findUserByEmail.js";
+import { endpointHit } from "../../utils/endpointHit.js";
 
 
 
 
 export const createUser = async (req: Request, res: Response) => {
+    endpointHit()
     const {email, name, username, password} = req.body
     if (!email || !name || !username || !password){
         return res.status(400).json({message: "All fields are required to create an account"})
