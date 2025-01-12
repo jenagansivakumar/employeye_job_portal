@@ -21,7 +21,8 @@ jobs:
               run: npm install
             
             - name: Build app
-              run: npm build
+              run: |
+                cd frontend
+                npm build
              
 
-              
