@@ -1,10 +1,10 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import {useForm} from "react-hook-form"
-import { formSchema } from '../../models/FormSchema'
+import { formSchema } from '../../../models/FormSchema'
 import { zodResolver } from "@hookform/resolvers/zod";
 import {z} from "zod"
-import { Button } from '../ui/button';
+import { Button } from '../../ui/button';
 
 type FormData = z.infer<typeof formSchema>
 export const LoginPage = () => {

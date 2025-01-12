@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { formSchema } from '../../models/FormSchema';
+import { formSchema } from '../../../models/FormSchema';
 import axios from 'axios';
 import { z } from 'zod';
-import { Button } from '../ui/button';
+import { Button } from '../../ui/button';
 
 type FormData = z.infer<typeof formSchema>;
 
@@ -57,6 +57,7 @@ export const LoginPage = () => {
 
       <label>Password</label>
       <input {...register("password")}/>
+      {errors.password && <p>{errors.password.message}</p>}
 
       <Button> Login </Button>
     </form>

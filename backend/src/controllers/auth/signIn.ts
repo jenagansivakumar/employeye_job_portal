@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { findUserByUsername } from "./authService/findUserByUsername.js";
-import { prisma } from "../../utils/init.js";
 import bcrypt from "bcrypt"
 
 
