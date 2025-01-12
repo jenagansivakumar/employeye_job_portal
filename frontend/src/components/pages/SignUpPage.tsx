@@ -24,7 +24,7 @@ export const LoginPage = () => {
         setLoading(true)
 
         try {
-            const response = await axios.post("http://localhost:4000/auth/create_user", data,  {headers: {"Content-Type" : "application/json"}})
+            const response = await axios.post("http://localhost:4000/auth/signupr", data,  {headers: {"Content-Type" : "application/json"}})
             setSuccess("Created new user!")
             console.log(response.data)
         } catch (error: any){
