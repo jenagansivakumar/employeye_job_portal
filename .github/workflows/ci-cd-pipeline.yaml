@@ -23,6 +23,6 @@ jobs:
             - name: Build app
               run: |
                 cd frontend
-                npm build
+                npm run build
              
 
