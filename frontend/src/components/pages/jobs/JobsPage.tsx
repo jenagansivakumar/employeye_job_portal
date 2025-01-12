@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { Job } from "../../../models/JobSchema";
 import axios from "axios";
 import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card";

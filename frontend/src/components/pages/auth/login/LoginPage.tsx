@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormSchema } from "../../../../models/FormSchema";
@@ -34,6 +34,7 @@ export const LoginPage = () => {
         data,
         { headers: { "Content-Type": "application/json" } }
       );
+      console.log(response)
       setSuccess("Successfully logged in!");
     } catch (error: any) {
       if (error.response && error.response.data.message) {
