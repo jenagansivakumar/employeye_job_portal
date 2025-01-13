@@ -6,13 +6,10 @@ COPY package*.json ./
 
 RUN npm install
 
-RUN npm rebuild bcrypt --build-from-source
-
 COPY . .
 
 RUN npx prisma generate
 
-
 EXPOSE 4000
 
-CMD ["npm", "start"]
+CMD ["sh", "-c", "npx prisma migrate deploy && npm start"]

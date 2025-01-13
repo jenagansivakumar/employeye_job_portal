@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import {prisma} from "../../utils/init.js"
-import bcrypt from "bcrypt"
+import bcrypt from "bcryptjs"
 import { findUserById } from "../user/userServices/findUserById.js";
 import { findUserByEmail } from "../user/userServices/findUserByEmail.js";
 import { endpointHit } from "../../utils/endpointHit.js";
