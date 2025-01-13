@@ -1,4 +1,4 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Job } from "../../../models/JobSchema";
 import axios from "axios";
 import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card";
@@ -27,31 +27,42 @@ export const JobsPage = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-muted">
-      <Card className="w-full max-w-3xl">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-gray-100">
+      <Card className="w-full max-w-3xl bg-gray-800 shadow-lg">
         <CardHeader>
-          <CardTitle className="text-center text-2xl font-bold">All Jobs</CardTitle>
+          <CardTitle className="text-center text-2xl font-bold text-gray-100">
+            All Jobs
+          </CardTitle>
         </CardHeader>
         <CardContent>
           {loading && (
             <div className="flex justify-center my-4">
-              <h2>Loading </h2>
+              <h2>Loading...</h2>
             </div>
           )}
           {error && <p className="text-sm text-red-500">{error}</p>}
-          {!loading && jobs.length === 0 && <p>No jobs available</p>}
+          {!loading && jobs.length === 0 && (
+            <p className="text-gray-300">No jobs available</p>
+          )}
           {!loading && jobs.length > 0 && (
             <ul className="space-y-2">
               {jobs.map((job) => (
-                <li key={job.id} className="p-4 border rounded-lg">
-                  <strong>{job.jobTitle}</strong>: {job.jobDescription}
+                <li
+                  key={job.id}
+                  className="p-4 bg-gray-700 border border-gray-600 rounded-lg"
+                >
+                  <strong className="text-gray-100">{job.jobTitle}</strong>:{" "}
+                  <span className="text-gray-300">{job.jobDescription}</span>
                 </li>
               ))}
             </ul>
           )}
         </CardContent>
       </Card>
-      <Button onClick={fetchJobs} className="mt-4">
+      <Button
+        onClick={fetchJobs}
+        className="mt-4 bg-gray-700 text-gray-100 hover:bg-gray-600"
+      >
         Refresh
       </Button>
     </div>

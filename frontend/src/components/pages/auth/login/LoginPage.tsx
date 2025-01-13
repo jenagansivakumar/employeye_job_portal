@@ -1,7 +1,7 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FormSchema, LoginSchema } from "../../../../models/FormSchema";
+import { LoginSchema } from "../../../../models/FormSchema";
 import axios from "axios";
 import { z } from "zod";
 import { Button } from "../../../ui/button";
@@ -10,11 +10,9 @@ import { Label } from "../../../ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "../../../ui/card";
 import { useNavigate } from "react-router-dom";
 
-
 type LoginData = z.infer<typeof LoginSchema>;
 
 export const LoginPage = () => {
-  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -27,11 +25,11 @@ export const LoginPage = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [success, setSuccess] = useState<string>("");
 
+  const navigate = useNavigate();
+
   const userLogin = async (data: LoginData) => {
     setError("");
     setLoading(true);
-    console.log(data)
-  
 
     try {
       const response = await axios.post(
@@ -39,9 +37,9 @@ export const LoginPage = () => {
         data,
         { headers: { "Content-Type": "application/json" } }
       );
-      localStorage.setItem("authToken", response.data.authToken)
-      navigate("/jobs/display")
-      console.log(response)
+      localStorage.setItem("authToken", response.data.authToken);
+      console.log("Token stored in localStorage:", localStorage.getItem("authToken"));
+      navigate("/jobs/display");
       setSuccess("Successfully logged in!");
     } catch (error: any) {
       if (error.response && error.response.data.message) {
@@ -59,38 +57,49 @@ export const LoginPage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-background">
-      <Card className="w-full max-w-md">
+    <div className="flex items-center justify-center min-h-screen bg-gray-900 text-gray-100">
+      <Card className="w-full max-w-md bg-gray-800 shadow-lg">
         <CardHeader>
-          <CardTitle className="text-center text-lg font-semibold">Login</CardTitle>
+          <CardTitle className="text-center text-lg font-semibold text-gray-100">
+            Login
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div>
-              <Label htmlFor="username">Username</Label>
+              <Label htmlFor="username" className="text-gray-300">
+                Username
+              </Label>
               <Input
                 id="username"
                 {...register("username")}
                 type="text"
                 placeholder="Enter your username"
+                className="bg-gray-700 text-gray-100 placeholder-gray-500 border-gray-600 focus:ring-gray-500"
               />
               {errors.username && (
                 <p className="text-sm text-red-500">{errors.username.message}</p>
               )}
             </div>
             <div>
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password" className="text-gray-300">
+                Password
+              </Label>
               <Input
                 id="password"
                 {...register("password")}
                 type="password"
                 placeholder="Enter your password"
+                className="bg-gray-700 text-gray-100 placeholder-gray-500 border-gray-600 focus:ring-gray-500"
               />
               {errors.password && (
                 <p className="text-sm text-red-500">{errors.password.message}</p>
               )}
             </div>
-            <Button type="submit" className="w-full">
+            <Button
+              type="submit"
+              className="w-full bg-gray-700 text-gray-100 hover:bg-gray-600"
+            >
               {loading ? "Logging in..." : "Login"}
             </Button>
             {error && <p className="mt-2 text-sm text-red-500">{error}</p>}

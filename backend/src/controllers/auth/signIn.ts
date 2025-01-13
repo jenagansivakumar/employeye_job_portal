@@ -31,8 +31,9 @@ export const userLogin = async (req: Request, res: Response) => {
         const payload = {id: userExists.id, username: userExists.username}
 
         const token = jwt.sign(payload, SECRET_KEY,{expiresIn:"1h"})
+        console.log(token)
 
-        res.send({token})
+        res.send({"authToken": token})
 
     } catch (error){
         console.error(error.message)

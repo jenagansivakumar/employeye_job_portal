@@ -60,28 +60,28 @@ export const SignUpPage = () => {
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            {/* Name Field */}
+       
             <div>
               <Label htmlFor="name">Name</Label>
               <Input id="name" {...register('name')} type="text" placeholder="Enter your name" />
               <p className="text-sm text-red-500">{errors.name?.message}</p>
             </div>
 
-            {/* Email Field */}
+           
             <div>
               <Label htmlFor="email">Email</Label>
               <Input id="email" {...register('email')} type="email" placeholder="Enter your email" />
               <p className="text-sm text-red-500">{errors.email?.message}</p>
             </div>
 
-            {/* Username Field */}
+      
             <div>
               <Label htmlFor="username">Username</Label>
               <Input id="username" {...register('username')} type="text" placeholder="Enter your username" />
               <p className="text-sm text-red-500">{errors.username?.message}</p>
             </div>
 
-            {/* Password Field */}
+         
             <div>
               <Label htmlFor="password">Password</Label>
               <Input
@@ -93,14 +93,14 @@ export const SignUpPage = () => {
               <p className="text-sm text-red-500">{errors.password?.message}</p>
             </div>
 
-            {/* Submit Button */}
+           
             <Button type="submit" className="w-full">
               {loading ? 'Loading...' : 'Submit'}
             </Button>
 
-            {/* Error Message */}
+          
             {error && <p className="mt-2 text-sm text-red-500">{error}</p>}
-            {/* Success Message */}
+           
             {success && <p className="mt-2 text-sm text-green-500">{success}</p>}
           </form>
         </CardContent>
