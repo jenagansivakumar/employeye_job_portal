@@ -83,4 +83,4 @@ The project includes a **GitHub Actions** workflow to:
 - Better UI
 - Implement user notifications.
 - Optimise CI/CD pipeline for production deployment.
-
+- Configure backend to serve React app for unknown routes.
