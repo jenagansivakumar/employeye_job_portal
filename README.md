@@ -61,7 +61,7 @@ JWT_SECRET=z2VmXjKOey6ZkH9pgOeOPRxn5duIyXNvkx-G4JmtXnC-dLrE9zHUJS_4xsd0bOYPAgLCA
 
 ### Run the App with Docker Compose
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
 Access the app at:
 - Frontend: [http://localhost:3000](http://localhost:3000)
