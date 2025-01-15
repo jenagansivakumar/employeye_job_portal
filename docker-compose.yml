@@ -22,6 +22,7 @@ services:
       - db
     environment:
       DATABASE_URL: "postgresql://postgres:password@db:5432/usersdb"
+      JWT_SECRET: "yourSuperSecretKey123!@"
     command: >
       sh -c "npx prisma migrate deploy && npm start"
     networks:

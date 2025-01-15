@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs"
 import { findUserById } from "../user/userServices/findUserById.js";
 import { findUserByEmail } from "../user/userServices/findUserByEmail.js";
 import { endpointHit } from "../../utils/endpointHit.js";
+import { findUserByUsername } from "./authService/findUserByUsername.js";
 
 
 
@@ -15,7 +16,7 @@ export const createUser = async (req: Request, res: Response) => {
         return res.status(400).json({message: "All fields are required to create an account"})
     }
 
-    const userExists = await findUserByEmail(email)
+    const userExists = await findUserByUsername(username)
 
     if (userExists){
         return res.status(400).json({message: "User already exists"})

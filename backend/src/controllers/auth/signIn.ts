@@ -12,6 +12,7 @@ export const userLogin = async (req: Request, res: Response) => {
     endpointHit()
     const {username, password} = req.body
     const SECRET_KEY = process.env.JWT_SECRET
+    console.log(SECRET_KEY)
 
     if (!username || !password){
         return res.status(400).json({message: "Username and password required"})
