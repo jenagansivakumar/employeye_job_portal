@@ -39,13 +39,20 @@ export const CreateJob = () => {
         
       });
       setSuccess("Successfully added job!");
-      await axios.post("http://localhost:8080/logs", data, {headers: {"Content-Type": "application/json"} })
-    } catch (err: any) {
-      setError(err.response?.data?.message || "Cannot create job");
-    } finally {
-      setLoading(false);
+   
+    try {
+      const response = await axios.post("http://localhost:8080/logs", data, {headers: {"Content-Type": "application/json"}})
+      console.log(response)
+    } catch (logError: any){
+      console.error("Logging service error: ", logError)
     }
-  };
+  } catch (error: any){
+    setError(error.response?.data?.message || error.message || "Unexpected error has occurred")
+  } finally {
+    setLoading(false)
+  }
+
+  
 
   const onSubmit = async (data: JobData) => {
     await createJob(data);
