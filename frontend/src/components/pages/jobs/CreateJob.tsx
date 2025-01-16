@@ -39,6 +39,7 @@ export const CreateJob = () => {
         
       });
       setSuccess("Successfully added job!");
+      await axios.post("http://localhost:8080/logs", data, {headers: {"Content-Type": "application/json"} })
     } catch (err: any) {
       setError(err.response?.data?.message || "Cannot create job");
     } finally {
