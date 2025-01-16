@@ -52,7 +52,7 @@ export const CreateJob = () => {
     setLoading(false)
   }
 
-  
+}
 
   const onSubmit = async (data: JobData) => {
     await createJob(data);
