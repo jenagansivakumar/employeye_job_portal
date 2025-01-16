@@ -2,9 +2,9 @@ package joblog
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 
+	"github.com/jenagansivakumar/api/db"
 	"github.com/jenagansivakumar/api/models"
 )
 
@@ -16,13 +16,25 @@ func JobLog(w http.ResponseWriter, r *http.Request) {
 
 	defer r.Body.Close()
 
-	var job models.Job
+	var jobLog models.JobLogPayLoad
 
-	if err := json.NewDecoder(r.Body).Decode(&job); err != nil {
-		http.Error(w, "Cannot decode request body", http.StatusInternalServerError)
+	if err := json.NewDecoder(r.Body).Decode(&jobLog); err != nil {
+		http.Error(w, "Invalid JSON payload", http.StatusBadRequest)
 		return
 	}
 
-	fmt.Printf("Job Title: %s, Job Description: %s\n", job.JobTitle, job.JobDescription)
+	query := `
+	INSERT INTO job_logs (job_id, job_title, job_description, created_at)
+		VALUES ($1, $2, $3, NOW())
+	`
+
+	_, err := db.DB.Exec(query, jobLog.JobId, jobLog.JobTitle, jobLog.JobDescription)
+	if err != nil {
+		http.Error(w, "Failed to log job", http.StatusInternalServerError)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte("Successfully logged job"))
 
 }

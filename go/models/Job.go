@@ -5,3 +5,9 @@ type Job struct {
 	JobTitle       string `json:"jobTitle"`
 	JobDescription string `json:"jobDescription"`
 }
+
+type JobLogPayLoad struct {
+	JobId          int    `json:"jobID"`
+	JobTitle       string `json:"jobTitle"`
+	JobDescription string `json:"jobDescription"`
+}
