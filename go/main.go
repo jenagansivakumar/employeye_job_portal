@@ -29,7 +29,7 @@ func main() {
 		WriteTimeout: 10 * time.Second,
 	}
 
-	fmt.Printf("Server is running on port %s", server.Addr)
+	fmt.Printf("Server is running on port %s\n", server.Addr)
 	log.Fatal(server.ListenAndServe())
 }
 

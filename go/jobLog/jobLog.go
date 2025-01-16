@@ -2,6 +2,7 @@ package joblog
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/jenagansivakumar/api/db"
@@ -30,11 +31,13 @@ func JobLog(w http.ResponseWriter, r *http.Request) {
 
 	_, err := db.DB.Exec(query, jobLog.JobId, jobLog.JobTitle, jobLog.JobDescription)
 	if err != nil {
+		fmt.Println("Error: ", err.Error())
 		http.Error(w, "Failed to log job", http.StatusInternalServerError)
 		return
 	}
 
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte("Successfully logged job"))
+	fmt.Printf("Job ID: %d, Job Title: %s, Job Description: %s", jobLog.JobId, jobLog.JobTitle, jobLog.JobDescription)
 
 }
