@@ -7,11 +7,16 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
+	"github.com/jenagansivakumar/api/db"
 	joblog "github.com/jenagansivakumar/api/jobLog"
 	"github.com/jenagansivakumar/api/middleware"
 )
 
 func main() {
+
+	if err := db.InitDb(); err != nil {
+		log.Fatalf("Failed to connect to db: %v", err)
+	}
 
 	router := muxRouter()
 
