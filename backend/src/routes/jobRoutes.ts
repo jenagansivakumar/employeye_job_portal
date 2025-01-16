@@ -10,7 +10,7 @@ import { verifyToken } from "../middleware/authMiddleware.js";
 export const jobRouter = Router()
 
 
-jobRouter.post("/create", verifyToken, createJob)
+jobRouter.post("/create", createJob)
 jobRouter.get("/fetch", fetchAllJobs)
-jobRouter.put("/update", verifyToken, updateJobDetail)
-jobRouter.delete("/delete", verifyToken, deleteJob)
+jobRouter.put("/update", updateJobDetail)
+jobRouter.delete("/delete", deleteJob)

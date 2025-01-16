@@ -7,15 +7,18 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
-	"github.com/jenagansivakumar/api/crud"
+	joblog "github.com/jenagansivakumar/api/jobLog"
+	"github.com/jenagansivakumar/api/middleware"
 )
 
 func main() {
 
 	router := muxRouter()
 
+	handler := middleware.CorsMiddleWare(router)
+
 	server := http.Server{
-		Handler:      router,
+		Handler:      handler,
 		Addr:         ":8080",
 		ReadTimeout:  10 * time.Second,
 		WriteTimeout: 10 * time.Second,
@@ -27,14 +30,11 @@ func main() {
 
 func muxRouter() *mux.Router {
 	// redisClient := clients.RedisClient()
-	client := http.Client{
-		Timeout: 10 * time.Second,
-	}
+	// client := http.Client{
+	// 	Timeout: 10 * time.Second,
+	// }
 	r := mux.NewRouter()
-	r.HandleFunc("/users", func(w http.ResponseWriter, r *http.Request) {
-		crud.FetchUser(w, r, &client)
-	}).Methods(http.MethodGet)
-	r.HandleFunc("/users", crud.CreateUser).Methods(http.MethodPost)
+	r.HandleFunc("/logs", joblog.JobLog)
 
 	return r
 }
