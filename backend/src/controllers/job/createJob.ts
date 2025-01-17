@@ -15,7 +15,7 @@ export const createJob = async(req: Request, res: Response) => {
     try {
         const createdJob = await prisma.jobDetail.create({
             data: {
-                
+
                jobTitle: jobTitle,
                jobDescription: jobDescription
             }
