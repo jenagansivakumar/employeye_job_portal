@@ -2,6 +2,7 @@ package db
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 
 	_ "github.com/lib/pq"
@@ -24,6 +25,8 @@ func InitDb() error {
 		log.Println("Cannot connect to DB")
 		return err
 	}
+
+	fmt.Println("Connected to DB")
 
 	return nil
 }
