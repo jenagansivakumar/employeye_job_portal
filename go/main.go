@@ -40,6 +40,7 @@ func muxRouter() *mux.Router {
 	// }
 	r := mux.NewRouter()
 	r.HandleFunc("/logs", joblog.JobLog)
+	r.HandleFunc("/", FetchAllResults)
 
 	return r
 }
