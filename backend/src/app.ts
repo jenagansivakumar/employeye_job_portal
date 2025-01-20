@@ -18,6 +18,8 @@ app.use("/auth", authRouter )
 
 
 
+
+
 app.listen(port, ()=>{
     return console.log(`Server is running on port ${port}`)
 })

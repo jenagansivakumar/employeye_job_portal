@@ -1,4 +1,4 @@
-import { prisma } from "../../../utils/init.js"
+import { prisma } from "../../../utils/prismaInit.js"
 
 
 

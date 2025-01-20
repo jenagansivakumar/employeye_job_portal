@@ -1,5 +1,5 @@
 import { number, string } from "zod";
-import { prisma } from "../../../utils/init.js";
+import { prisma } from "../../../utils/prismaInit.js";
 
 
 

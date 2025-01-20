@@ -29,5 +29,10 @@ model userProfileDetails {
   name String
   age Int
   profession String
-  
+  workingExperience String
+  location String
+  operationRoomExp Boolean
+  lastPosition String
+  salaryExpectation Int
+
 }
