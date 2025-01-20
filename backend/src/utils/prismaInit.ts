@@ -1,17 +1,26 @@
 import { PrismaClient } from "@prisma/client";
 
+let prisma: PrismaClient
 
-const createPrismaClient = ()=> {
+
+const createPrismaClient = async()=> {
     try {
-        return new PrismaClient({
+        prisma = new PrismaClient({
             datasources: { db: { url: process.env.DATABASE_URL } }
         });
+        await prisma.$connect()
+        console.log("Connected to primary database")
     } catch (error) {
         console.log("Primary database connection failed, trying fallback...");
-        return new PrismaClient({
+        prisma = new PrismaClient({
             datasources: { db: { url: process.env.DATABASE_URL_FALLBACK } }
         });
+        await prisma.$connect()
+        console.log("Connected to fallback database")
     }
 }
 
-export const prisma = createPrismaClient()
+createPrismaClient()
+
+
+export {prisma}
