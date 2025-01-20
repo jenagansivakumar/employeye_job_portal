@@ -31,8 +31,8 @@ model userProfileDetails {
   profession String
   workingExperience String
   location String
-  operationRoomExp Boolean
-  lastPosition String
-  salaryExpectation Int
+  hasOperationRoomExp Boolean
+  lastPosition String?
+  salaryExpectation Int?
 
 }
