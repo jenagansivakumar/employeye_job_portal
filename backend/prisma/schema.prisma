@@ -22,3 +22,12 @@ model jobDetail {
   jobTitle String
   jobDescription String
 }
+
+
+model userProfileDetails {
+  id Int @id @default(autoincrement())
+  name String
+  age Int
+  profession String
+  
+}
